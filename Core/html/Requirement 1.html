@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>nautil.us style</title>
+    <style>
+        body, html {
+            height: 4000px;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        #curtain {
+            height: 1080px;
+            width: 100%;
+            background-color:  #628C61;
+            z-index: 1;
+            position: absolute;
+        }
+
+        #content {
+            height: 3000px;
+            width: 100%;
+            background-color: #2B4C7E;
+            top: 0;
+            /*z-index: -1;*/
+            margin-bottom: 100%;
+            position: fixed;
+            z-index: 0;
+        }
+
+        #someMoreContent {
+            width: 100%;
+            height: 100%;
+            background-color: #628C61;
+            z-index: -2;
+        }
+
+        #content h1 {
+            padding: 0;
+            margin: 0;
+        }
+
+        .horizontalAligner{
+            text-align: center;
+        }
+
+        .verticalAligner:before {
+            content: "";
+            height: 100%;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        #box {
+            display: inline-block;
+            width: 50%;
+            margin: auto;
+            height: 50%;
+            vertical-align: middle;
+            background-color: #5467ff;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="curtain" class="verticalAligner horizontalAligner">
+
+    <div id="box"></div>
+
+</div>
+
+
+<div id="content">
+
+
+    <h1> !!! Hello World !!!</h1>
+
+
+</div>
+
+
+<script type="text/javascript" src="../js/jquery.1.9.0.min.js"></script>
+<script type="text/javascript">
+
+    $(function(){
+        var $window = $(window);
+        //    var limit = 1000;
+        //    var bodyHeight = document.body.clientHeight;
+        //    var content = document.getElementById("content");
+        //
+        //    var curtain = document.getElementById("curtain");
+        //
+        //    function windowHandler(scrollEvent) {
+        //            window.screenTop
+        //        var scrollTop = $window.scrollTop();
+        //        if (bodyHeight + limit < scrollTop)
+        //            content.style.position = "static"
+        //        else
+        //            content.style.position = "fixed";
+        //
+        //    }
+
+        function windowResizeHandler(resizeEvent) {
+            curtain.style.height = (window.innerHeight || document.documentElement.clientHeight || document.body.clientWidth) + "px";
+            // write the code to  handle the window resize.
+        }
+
+
+        windowResizeHandler(null);
+        window.addEventListener("resize", windowResizeHandler);
+
+    });
+</script>
+
+</body>
+</html>

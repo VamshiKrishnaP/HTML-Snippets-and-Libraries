@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animation Events</title>
+    <style type="text/css">
+
+
+
+        #box {
+            display: inline-block;
+            width: 300px;
+            height: 300px;
+            background-color: darkslategray;
+            -webkit-transition: 2s all;
+            -moz-transition: 2s all;
+            -ms-transition: 2s all;
+            -o-transition: 2s all;
+            transition: 2s all;
+
+        }
+
+        #box:hover {
+            width: 600px;
+
+            /*animation: animateIncreaseSize 2s forwards;*/
+
+        }
+
+        @keyframes animateIncreaseSize {
+            to {
+                width: 600px;
+            }
+        }
+
+        .fiveHundredPixelTall {
+            animation: changeBackgroundColor 2s ease-in forwards;
+
+            -webkit-animation: changeBackgroundColor 1s;
+            -moz-animation: changeBackgroundColor 1s;
+            -o-animation: changeBackgroundColor 1s;
+            animation: changeBackgroundColor 1s;
+
+        }
+
+        @keyframes changeBackgroundColor {
+            to {
+                background-color: cornflowerblue;
+            }
+        }
+
+        @-moz-keyframes changeBackgroundColor {
+            to {
+                background-color: cornflowerblue;
+            }
+        }
+
+        @-o-keyframes changeBackgroundColor {
+            to {
+                background-color: cornflowerblue;
+            }
+        }
+
+        @-webkit-keyframes changeBackgroundColor {
+            to {
+                background-color: cornflowerblue;
+            }
+        }
+
+        @-ms-keyframes changeBackgroundColor {
+            to {
+                background-color: cornflowerblue;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div id="box">
+
+
+</div>
+
+<div id="button" style="height: 50px;width: 175px;background-color: crimson">
+    Click Me.
+</div>
+
+<script type="text/javascript" src="../js/jquery.1.9.0.min.js"></script>
+<script type="text/javascript" src="../js/CSS3EventsUtils.js"></script>
+<script type="text/javascript">
+
+
+    var classAdded = false;
+    var className = "fiveHundredPixelTall";
+    var button = document.getElementById("button"),
+            box = document.getElementById("box");
+    button.addEventListener("click", toggleClass, false);
+
+    function displayObjectProperties(e) {
+        var propertyName;
+        for (propertyName in e) {
+            console.log(propertyName + ": " + e[propertyName])
+        }
+    }
+
+    function toggleClass() {
+
+        //        if (!classAdded) {
+        //            box.className = className;
+        //        } else {
+        //            box.className = "";
+        //        }
+        //        classAdded = !classAdded;
+
+        //        box.classList.toggle(className)
+        $(box).toggleClass(className)
+
+    }
+
+    $(function () {
+
+        /*                              Event Callbacks
+         -----------------------------------------------------------------------*/
+
+
+        function transitionEndHandler(transitioinEndEvent) {
+            console.log("Transition ended");
+        }
+
+        function animationStartHandler(animationStartEvent) {
+            console.log("Animation started...");
+        }
+
+        function animationEndHandler(animationStartEvent) {
+            console.log("Animation ended.");
+        }
+
+
+        /*                              Event Registration
+         -----------------------------------------------------------------------*/
+
+        addAnimationStartEventTo(box, animationStartHandler, false);
+        addAnimationEndEventTo(box, animationEndHandler, false);
+        addTransitionEndEventTo(box, transitionEndHandler, false);
+
+    })
+
+
+</script>
+
+</body>
+</html>
